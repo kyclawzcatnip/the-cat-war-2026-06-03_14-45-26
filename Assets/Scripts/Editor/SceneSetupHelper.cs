@@ -147,9 +147,10 @@ namespace CatWar.Editor
             }
 
             TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
-            if (importer != null && importer.textureType != TextureImporterType.Sprite)
+            if (importer != null && (importer.textureType != TextureImporterType.Sprite || importer.spriteImportMode != SpriteImportMode.Single))
             {
                 importer.textureType = TextureImporterType.Sprite;
+                importer.spriteImportMode = SpriteImportMode.Single;
                 importer.spritePivot = new Vector2(0.5f, 0.0f); // Set pivot to bottom for ground standing
                 importer.SaveAndReimport();
             }
