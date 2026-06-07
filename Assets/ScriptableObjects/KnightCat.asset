@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bf299cc6c05464b81c1dbad37d342b, type: 3}
+  m_Name: KnightCat
+  m_EditorClassIdentifier: Assembly-CSharp::CatWar.UnitData
+  unitName: Knight Cat
+  icon: {fileID: 0}
+  unitSprite: {fileID: 2594056439468428271, guid: 48b252d578c40d14491ba708cdd2eb42, type: 3}
+  cost: 50
+  spawnCooldown: 6
+  maxHealth: 120
+  attackDamage: 15
+  attackRange: 1.2
+  attackCooldown: 1
+  movementSpeed: 1.8
+  isRanged: 0
+  isHealer: 0
+  healAmount: 0
+  prefab: {fileID: 6682548036109428986, guid: a648122cb7c9dbb41b70444c8b33fa9a, type: 3}
+  hitEffectPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 6038517104369492890, guid: e8ea679b2b5fd2e40a120205f620949a, type: 3}
+  spawnSound: {fileID: 0}
+  attackSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 0}
