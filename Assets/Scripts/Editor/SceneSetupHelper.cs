@@ -132,27 +132,25 @@ namespace CatWar.Editor
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
             string assetPath = "Assets/" + relativePath;
-            if (File.Exists(fullPath))
+            if (!File.Exists(fullPath))
             {
-                return AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+                Texture2D tex = new Texture2D(width, height);
+                Color[] colors = new Color[width * height];
+                for (int i = 0; i < colors.Length; i++) colors[i] = color;
+                tex.SetPixels(colors);
+                tex.Apply();
+
+                byte[] bytes = tex.EncodeToPNG();
+                File.WriteAllBytes(fullPath, bytes);
+                Object.DestroyImmediate(tex);
+                AssetDatabase.ImportAsset(assetPath);
             }
 
-            Texture2D tex = new Texture2D(width, height);
-            Color[] colors = new Color[width * height];
-            for (int i = 0; i < colors.Length; i++) colors[i] = color;
-            tex.SetPixels(colors);
-            tex.Apply();
-
-            byte[] bytes = tex.EncodeToPNG();
-            File.WriteAllBytes(fullPath, bytes);
-            Object.DestroyImmediate(tex);
-            AssetDatabase.ImportAsset(assetPath);
-
             TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
-            if (importer != null)
+            if (importer != null && importer.textureType != TextureImporterType.Sprite)
             {
                 importer.textureType = TextureImporterType.Sprite;
-                importer.spritePivot = new Vector2(0.5f, 0.0f); // Set pivot to bottom by default for ground standing
+                importer.spritePivot = new Vector2(0.5f, 0.0f); // Set pivot to bottom for ground standing
                 importer.SaveAndReimport();
             }
 
